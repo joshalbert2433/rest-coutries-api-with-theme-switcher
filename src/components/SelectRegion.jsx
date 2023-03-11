@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { GoChevronDown } from "react-icons/go";
 
-function SelectRegion() {
+function SelectRegion({ setRegion }) {
 	const [show, setShow] = useState(false);
-
-	console.log(show);
+	const [title, setTitle] = useState("Filter by Region");
 
 	return (
-		<div className="relative mt-12">
+		<div className="relative mt-12 z-50">
 			<div
 				className=" bg-primary shadow px-6 py-4 font-semibold rounded w-[220px] items-center flex justify-between cursor-pointer"
 				onClick={() => setShow(!show)}
 			>
-				<div className=" select-none ">Filter by Region</div>
+				<div className=" select-none ">{title}</div>
 				<GoChevronDown />
 			</div>
 			<ul
@@ -20,11 +19,46 @@ function SelectRegion() {
 					show ? "block" : "hidden"
 				}`}
 			>
-				<li>Africa</li>
-				<li>America</li>
-				<li>Asia</li>
-				<li>Europe</li>
-				<li>Oceania</li>
+				<li
+					onClick={() => {
+						setTitle("Africa");
+						setRegion("africa");
+					}}
+				>
+					Africa
+				</li>
+				<li
+					onClick={() => {
+						setTitle("America");
+						setRegion("americas");
+					}}
+				>
+					America
+				</li>
+				<li
+					onClick={() => {
+						setTitle("Asia");
+						setRegion("asia");
+					}}
+				>
+					Asia
+				</li>
+				<li
+					onClick={() => {
+						setTitle("Europe");
+						setRegion("europe");
+					}}
+				>
+					Europe
+				</li>
+				<li
+					onClick={() => {
+						setTitle("Oceania");
+						setRegion("oceania");
+					}}
+				>
+					Oceania
+				</li>
 			</ul>
 		</div>
 	);

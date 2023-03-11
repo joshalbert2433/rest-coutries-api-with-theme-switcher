@@ -1,17 +1,31 @@
 import Axios from "axios";
 
 const RestCountries = Axios.create({
-	baseURL: "https://restcountries.com/v2/",
+	baseURL: "https://restcountries.com/v2",
+	validateStatus: (status) => {
+		// THROW ERROR
+		return status >= 200 && status < 300;
+	},
 });
 
-const getAllCountries = async () => {
-	try {
-		const { data } = await RestCountries.get("all");
+const getCountriesByRegion = async (region) => {
+	let URI = region === "all" ? "/all" : `/region/${region}`;
 
+	try {
+		const { data } = await RestCountries.get(URI);
 		return data;
 	} catch (error) {
 		console.log(error);
 	}
 };
 
-export { getAllCountries };
+const getCountriesByName = async (keyword) => {
+	try {
+		const { data } = await RestCountries.get(`/name/${keyword}`);
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export { getCountriesByRegion, getCountriesByName };

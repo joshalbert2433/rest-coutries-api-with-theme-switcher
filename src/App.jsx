@@ -11,10 +11,12 @@ function App() {
 		<div>
 			<Header />
 
-			<Routes>
-				<Route index path="/" element={<Home />} />
-				<Route path="/details/:country" element={<Details />} />
-			</Routes>
+			<main>
+				<Routes>
+					<Route index path="/" element={<Home />} />
+					<Route path="/details/:country" element={<Details />} />
+				</Routes>
+			</main>
 		</div>
 	);
 }
