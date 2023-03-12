@@ -7,7 +7,7 @@ function CardCountry({ data }) {
 		<div className="bg-primary rounded shadow overflow-hidden">
 			<img
 				src={flag}
-				alt="Country Image"
+				alt={name + "flag"}
 				className="w-full h-[220px] object-cover hover:scale-110 transition-all"
 			/>
 			<div className="p-8 flex flex-col gap-4">

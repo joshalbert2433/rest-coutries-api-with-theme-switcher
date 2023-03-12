@@ -21,6 +21,7 @@ function SelectRegion({ setRegion }) {
 			>
 				<li
 					onClick={() => {
+						setShow(false);
 						setTitle("Africa");
 						setRegion("africa");
 					}}
@@ -29,6 +30,7 @@ function SelectRegion({ setRegion }) {
 				</li>
 				<li
 					onClick={() => {
+						setShow(false);
 						setTitle("America");
 						setRegion("americas");
 					}}
@@ -37,6 +39,7 @@ function SelectRegion({ setRegion }) {
 				</li>
 				<li
 					onClick={() => {
+						setShow(false);
 						setTitle("Asia");
 						setRegion("asia");
 					}}
@@ -45,6 +48,7 @@ function SelectRegion({ setRegion }) {
 				</li>
 				<li
 					onClick={() => {
+						setShow(false);
 						setTitle("Europe");
 						setRegion("europe");
 					}}
@@ -53,6 +57,7 @@ function SelectRegion({ setRegion }) {
 				</li>
 				<li
 					onClick={() => {
+						setShow(false);
 						setTitle("Oceania");
 						setRegion("oceania");
 					}}
