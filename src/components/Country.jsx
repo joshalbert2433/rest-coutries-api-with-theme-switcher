@@ -21,44 +21,29 @@ function Country(props) {
 	const debounceSearch = useDebounce(search, 300);
 
 	const countriesRegionQuery = useQuery({
-		queryKey: ["countries", region],
-		queryFn: () => getCountriesByRegion(region),
+		queryKey: ["countries", region, debounceSearch],
+		queryFn: () => getCountriesByRegion(region, debounceSearch),
 		onSuccess: setCountriesData,
 		refetchOnWindowFocus: false,
 	});
 
-	const countriesByNameQuery = useQuery({
-		// enabled: search !== "",
-		queryKey: ["countriesSearch", debounceSearch],
-		placeholderData: countriesData,
-		queryFn: () => getCountriesByName(debounceSearch),
-		onSuccess: setCountriesData,
-		refetchOnWindowFocus: false,
-	});
-
-	if (search === "") {
-		setCountriesData(countriesRegionQuery.data);
-	}
+	// const countriesByNameQuery = useQuery({
+	// 	// enabled: search !== "",
+	// 	queryKey: ["countriesSearch", debounceSearch],
+	// 	placeholderData: countriesData,
+	// 	queryFn: () => getCountriesByName(debounceSearch),
+	// 	onSuccess: setCountriesData,
+	// 	refetchOnWindowFocus: false,
+	// });
 
 	if (countriesRegionQuery.isLoading) {
 		return <div>Loading...</div>;
 	}
 
 	if (countriesRegionQuery.isError) {
-		return <div>Error 404</div>;
-	}
-
-	if (countriesByNameQuery.isLoading) {
-		return <div>Loading...</div>;
-	}
-
-	if (
-		countriesByNameQuery.isError &&
-		search !== "" &&
-		!countriesByNameQuery.isLoading
-	) {
 		return <div>Country Not Found</div>;
 	}
+
 	return (
 		<>
 			{countriesData.map((data) => {

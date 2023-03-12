@@ -16,7 +16,7 @@ function Details() {
 		subregion,
 		nativeName,
 		topLevelDomain,
-		currency,
+		currencies,
 		languages,
 		capital,
 		flags,
@@ -33,7 +33,7 @@ function Details() {
 			</Link>
 			<div className="mt-14">
 				<img src={flags.png} alt="" className="w-full h-60" />
-				<h2 className="text-2xl font-bold my-6 mt-8">Belgium</h2>
+				<h2 className="text-2xl font-bold my-6 mt-8">{name}</h2>
 				<div className="space-y-2">
 					<div>
 						<span className="font-semibold">Native Name: </span>
@@ -64,7 +64,9 @@ function Details() {
 					</div>
 					<div>
 						<span className="font-semibold">Currencies: </span>
-						{currency}
+						{currencies.map((currency) => {
+							return currency.name;
+						})}
 					</div>
 					<div>
 						<span className="font-semibold">Language: </span>

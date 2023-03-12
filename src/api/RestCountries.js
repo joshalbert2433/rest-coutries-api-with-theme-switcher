@@ -8,11 +8,23 @@ const RestCountries = Axios.create({
 	},
 });
 
-const getCountriesByRegion = async (region) => {
-	let URI = region === "all" ? "/all" : `/region/${region}`;
+const getCountriesByRegion = async (region, search) => {
+	let URI =
+		search !== ""
+			? `/name/${search}`
+			: region === "all"
+			? "/all"
+			: `/region/${region}`;
+
+	// if (search !== "") {
+	// 	URI = `/name/${search}`;
+	// }
+
+	console.log(URI);
 
 	try {
 		const { data } = await RestCountries.get(URI);
+		console.log(data);
 		return data;
 	} catch (error) {
 		console.log(error);
