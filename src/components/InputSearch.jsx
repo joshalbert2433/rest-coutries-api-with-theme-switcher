@@ -16,7 +16,7 @@ function InputSearch({ search, setSearch }) {
 					setSearch(e.target.value);
 				}}
 				placeholder="Search for a country..."
-				className="w-full p-4 pl-20 text-sm bg-primary"
+				className="w-full p-4 pl-20 text-sm bg-primary md:w-[400px]"
 			/>
 		</div>
 	);

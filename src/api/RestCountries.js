@@ -2,29 +2,17 @@ import Axios from "axios";
 
 const RestCountries = Axios.create({
 	baseURL: "https://restcountries.com/v2",
-	validateStatus: (status) => {
-		// THROW ERROR
-		return status >= 200 && status < 300;
-	},
+	// validateStatus: (status) => {
+	// 	// THROW ERROR
+	// 	return status >= 200 && status < 300;
+	// },
 });
 
-const getCountriesByRegion = async (region, search) => {
-	let URI =
-		search !== ""
-			? `/name/${search}`
-			: region === "all"
-			? "/all"
-			: `/region/${region}`;
-
-	// if (search !== "") {
-	// 	URI = `/name/${search}`;
-	// }
-
-	console.log(URI);
+const getCountriesByRegion = async (region) => {
+	let URI = region === "all" ? "/all" : `/region/${region}`;
 
 	try {
 		const { data } = await RestCountries.get(URI);
-		console.log(data);
 		return data;
 	} catch (error) {
 		console.log(error);
@@ -40,4 +28,14 @@ const getCountriesByName = async (keyword) => {
 	}
 };
 
-export { getCountriesByRegion, getCountriesByName };
+const getCountryCode = async (code) => {
+	try {
+		const { data } = await RestCountries.get(`/alpha?codes=${code}`);
+		console.log(data);
+		return data;
+	} catch (error) {
+		console.log(error.response);
+	}
+};
+
+export { getCountriesByRegion, getCountriesByName, getCountryCode };

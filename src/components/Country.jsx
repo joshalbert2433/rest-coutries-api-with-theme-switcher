@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getCountriesByName, getCountriesByRegion } from "../api/RestCountries";
 import { useQuery } from "@tanstack/react-query";
 import useDebounce from "../hooks/UseDebounce";
@@ -16,37 +16,41 @@ function Country(props) {
 		setRegion,
 	} = props;
 
-	console.log(countriesData);
-
 	const debounceSearch = useDebounce(search, 300);
 
+	useEffect(() => {
+		if (search === "") {
+			setCountriesData(countriesRegionQuery.data);
+		}
+	}, [search]);
+
 	const countriesRegionQuery = useQuery({
-		queryKey: ["countries", region, debounceSearch],
-		queryFn: () => getCountriesByRegion(region, debounceSearch),
+		queryKey: ["countries", region],
+		queryFn: () => getCountriesByRegion(region),
 		onSuccess: setCountriesData,
-		refetchOnWindowFocus: false,
 	});
 
-	// const countriesByNameQuery = useQuery({
-	// 	// enabled: search !== "",
-	// 	queryKey: ["countriesSearch", debounceSearch],
-	// 	placeholderData: countriesData,
-	// 	queryFn: () => getCountriesByName(debounceSearch),
-	// 	onSuccess: setCountriesData,
-	// 	refetchOnWindowFocus: false,
-	// });
+	const countriesByNameQuery = useQuery({
+		enabled: search !== "",
+		queryKey: ["countriesSearch", debounceSearch],
+		queryFn: () => getCountriesByName(debounceSearch),
+		onSuccess: setCountriesData,
+	});
 
 	if (countriesRegionQuery.isLoading) {
 		return <div>Loading...</div>;
 	}
+	if (countriesByNameQuery.isFetching) {
+		return <div>Loading...</div>;
+	}
 
-	if (countriesRegionQuery.isError) {
+	if (countriesByNameQuery.isError & (search !== "")) {
 		return <div>Country Not Found</div>;
 	}
 
 	return (
 		<>
-			{countriesData.map((data) => {
+			{countriesData?.map((data) => {
 				return (
 					<Link
 						to={`/details/${data.name}`}

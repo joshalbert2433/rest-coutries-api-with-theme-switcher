@@ -6,7 +6,7 @@ function SelectRegion({ setRegion }) {
 	const [title, setTitle] = useState("Filter by Region");
 
 	return (
-		<div className="relative mt-12 z-50">
+		<div className="relative mt-12 z-50 md:mt-0">
 			<div
 				className=" bg-primary shadow px-6 py-4 font-semibold rounded w-[220px] items-center flex justify-between cursor-pointer"
 				onClick={() => setShow(!show)}

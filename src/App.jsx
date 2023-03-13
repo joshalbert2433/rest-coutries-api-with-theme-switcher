@@ -8,7 +8,7 @@ import Details from "./pages/Details";
 
 function App() {
 	return (
-		<div>
+		<div className=" text-sm sm:text-base ">
 			<Header />
 
 			<main>
