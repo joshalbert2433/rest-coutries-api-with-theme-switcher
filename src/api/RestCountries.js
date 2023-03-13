@@ -27,10 +27,9 @@ const getCountriesByName = async (keyword) => {
 const getCountryCode = async (code) => {
 	try {
 		const { data } = await RestCountries.get(`/alpha?codes=${code}`);
-		console.log(data);
 		return data;
 	} catch (error) {
-		console.log(error.response);
+		console.log(error);
 	}
 };
 
