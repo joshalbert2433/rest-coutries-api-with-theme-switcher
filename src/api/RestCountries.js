@@ -2,10 +2,6 @@ import Axios from "axios";
 
 const RestCountries = Axios.create({
 	baseURL: "https://restcountries.com/v2",
-	// validateStatus: (status) => {
-	// 	// THROW ERROR
-	// 	return status >= 200 && status < 300;
-	// },
 });
 
 const getCountriesByRegion = async (region) => {

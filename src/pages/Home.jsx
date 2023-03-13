@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import CardCountry from "../components/CardCountry";
 import InputSearch from "../components/InputSearch";
 import SelectRegion from "../components/SelectRegion";
-import { useQuery } from "@tanstack/react-query";
-import { getCountriesByRegion, getCountriesByName } from "../api/RestCountries";
-import { Link } from "react-router-dom";
-import useDebounce from "../hooks/UseDebounce";
 import Country from "../components/Country";
 
 function Home() {

@@ -6,15 +6,7 @@ import { Link } from "react-router-dom";
 import CardCountry from "./CardCountry";
 
 function Country(props) {
-	//TODO: WRAP ALL DATA CALL IN API FUNCTION
-	const {
-		search,
-		setSearch,
-		countriesData,
-		setCountriesData,
-		region,
-		setRegion,
-	} = props;
+	const { search, countriesData, setCountriesData, region } = props;
 
 	const debounceSearch = useDebounce(search, 300);
 
